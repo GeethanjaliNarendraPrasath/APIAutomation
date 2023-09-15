@@ -1,0 +1,338 @@
+{
+	"info": {
+		"_postman_id": "0fbc3df8-6dc9-4438-8f7f-ade77d214974",
+		"name": "ServiceNow",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "29626820",
+		"_collection_link": "https://restless-rocket-948945.postman.co/workspace/Postman-GeethaSeptember~2adff65d-697c-43cd-8518-7c64eb3664a5/collection/29626820-0fbc3df8-6dc9-4438-8f7f-ade77d214974?action=share&source=collection_link&creator=29626820"
+	},
+	"item": [
+		{
+			"name": "RetriveAll",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://dev158884.service-now.com/api/now/table/incident?sysparm_limit=1",
+					"protocol": "https",
+					"host": [
+						"dev158884",
+						"service-now",
+						"com"
+					],
+					"path": [
+						"api",
+						"now",
+						"table",
+						"incident"
+					],
+					"query": [
+						{
+							"key": "sysparm_limit",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreateOrder",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var sysID = pm.response.json();\r",
+							"pm.globals.set(\"SystemID\", sysID.result.sys_id);\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"description\": \"Access = verified\",\r\n    \"short_description\": \"Number = 9840186069\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://dev158884.service-now.com/api/now/table/incident",
+					"protocol": "https",
+					"host": [
+						"dev158884",
+						"service-now",
+						"com"
+					],
+					"path": [
+						"api",
+						"now",
+						"table",
+						"incident"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "RetriveRecord",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://dev158884.service-now.com/api/now/table/incident/:sys_id",
+					"protocol": "https",
+					"host": [
+						"dev158884",
+						"service-now",
+						"com"
+					],
+					"path": [
+						"api",
+						"now",
+						"table",
+						"incident",
+						":sys_id"
+					],
+					"variable": [
+						{
+							"key": "sys_id",
+							"value": "{{SystemID}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ModifyRecord",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"description\":\"Name = Geethanjali G\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://dev158884.service-now.com/api/now/table/incident/:sys_id",
+					"protocol": "https",
+					"host": [
+						"dev158884",
+						"service-now",
+						"com"
+					],
+					"path": [
+						"api",
+						"now",
+						"table",
+						"incident",
+						":sys_id"
+					],
+					"variable": [
+						{
+							"key": "sys_id",
+							"value": "{{SystemID}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateRequest",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"location\":\"chennai\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://dev158884.service-now.com/api/now/table/incident/:sys_id",
+					"protocol": "https",
+					"host": [
+						"dev158884",
+						"service-now",
+						"com"
+					],
+					"path": [
+						"api",
+						"now",
+						"table",
+						"incident",
+						":sys_id"
+					],
+					"variable": [
+						{
+							"key": "sys_id",
+							"value": "{{SystemID}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteRecord",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {\r",
+							"    pm.response.to.have.status(204);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://dev158884.service-now.com/api/now/table/incident/:sys_id",
+					"protocol": "https",
+					"host": [
+						"dev158884",
+						"service-now",
+						"com"
+					],
+					"path": [
+						"api",
+						"now",
+						"table",
+						"incident",
+						":sys_id"
+					],
+					"variable": [
+						{
+							"key": "sys_id",
+							"value": "{{SystemID}}"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "basic",
+		"basic": [
+			{
+				"key": "password",
+				"value": "bqk+B^Xt19PW",
+				"type": "string"
+			},
+			{
+				"key": "username",
+				"value": "admin",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
