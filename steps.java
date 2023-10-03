@@ -1,4 +1,4 @@
-package stepDef;
+package steps;
 
 import java.io.File;
 
